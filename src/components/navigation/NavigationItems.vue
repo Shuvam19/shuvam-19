@@ -43,7 +43,7 @@ export default {
 
 @media screen and (max-width: 767px) {
     .nav-text {
-        font-size: 4vh;
+        font-size: 3.5vh;
     }
 }
 </style>
