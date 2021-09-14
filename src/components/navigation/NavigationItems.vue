@@ -1,9 +1,9 @@
 <template>
   <template v-for="link in listOfLinks" v-bind:key="link.id">
     <div class="nav-item">
-      <router-link class="nav-text" :to="'/' + link.to">{{
+      <a class="nav-text" :href="'/#' + link.to">{{
         link.name
-      }}</router-link>
+      }}</a>
     </div>
   </template>
 </template>
@@ -17,8 +17,8 @@ export default {
         { id: 1, name: "About", to: "about" },
         { id: 2, name: "Experience", to: "experience" },
         { id: 3, name: "Project", to: "project" },
-        { id: 4, name: "Blog", to: "blog" },
-        { id: 5, name: "Contact", to: "contact" },
+        // { id: 4, name: "Blog", to: "blog" },
+        { id: 5, name: "Contact", to: "footer" },
       ],
     };
   },

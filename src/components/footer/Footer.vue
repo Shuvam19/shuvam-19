@@ -1,9 +1,9 @@
 <template>
-  <div class="footer" v-show="true">
-    <div></div>
+  <div id="footer">
+    <p class="get-in-touch">Get In Touch</p>
     <div class="external-links">
       <div class="individual-link" v-for="link in listOfLinks" :key="link.name">
-        <a :href="link.to">
+        <a :href="link.to" target="_blank">
           <icon-base
             :color="color"
             :hoverColor="hoverColor"
@@ -59,7 +59,7 @@ export default {
         },
         {
           name: "Gmail",
-          to: "https://github.com/Shuvam19",
+          to: "mailto:shuvam1982000@gmail.com",
         },
         {
           name: "Instagram",
@@ -80,25 +80,40 @@ export default {
 </script>
 
 <style scoped>
-.footer {
-  height: 10vh;
+#footer {
   width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
 }
+
+.get-in-touch {
+  margin: 0px;
+  font-size: 4vw;
+  font-weight: 700;
+  font-family: sans-serif;
+  color: #b0bbda;
+}
+
 .external-links {
   height: 100%;
   width: auto;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
 }
+
 .individual-link {
   padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+  .get-in-touch {
+    font-size: 50px;
+  }
 }
 </style>
