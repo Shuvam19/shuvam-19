@@ -32,11 +32,11 @@ export default {
     },
     color: {
       type: String,
-      default: "currentColor",
+      default: "#b0bbda",
     },
     hoverColor: {
       type: String,
-      default: "currentColor",
+      default: "#64ffda",
     },
   },
 };
