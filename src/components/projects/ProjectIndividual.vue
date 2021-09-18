@@ -1,9 +1,17 @@
 <template>
-  <div class="individual-project">
+  <div
+    class="individual-project"
+    @mouseenter="hoveredIn"
+    @mouseleave="hoveredOut"
+  >
     <div class="project-info">
-      <h4 class="project-name">
-        Project Name is another thing that could be very long
-      </h4>
+      <!-- In Testing -->
+      <!-- <div class="semi-image">
+        <icon-base width="50" height="50">
+          <icon-face-book />
+        </icon-base>
+      </div> -->
+      <p class="project-name" :class="hoverColor">Project Name is another</p>
       <br />
       <p class="project-description">
         This is a small description of the Project That shows about the project
@@ -12,41 +20,28 @@
     </div>
     <div class="project-extras">
       <ul class="project-tech-stack">
-        <li class="project-tech-name">TechStack</li>
-        <li class="project-tech-name">TechStack</li>
-        <li class="project-tech-name">TechStack</li>
+        <li class="project-tech-name">Vue</li>
+        <li class="project-tech-name">React</li>
+        <li class="project-tech-name">Firebase</li>
       </ul>
       <ul class="project_link">
         <li class="project-link-icon">
           <a href="#">
-            <icon-base
-              :color="color"
-              :hoverColor="hoverColor"
-              :width="24"
-              :height="24"
-            >
+            <icon-base :width="24" :height="24">
               <icon-github />
             </icon-base>
           </a>
         </li>
         <li class="project-link-icon">
           <a href="#">
-            <icon-base
-              :color="color"
-              :hoverColor="hoverColor"
-              :width="24"
-              :height="24"
-            >
+            <icon-base width="24" height="24">
               <icon-code-chef />
             </icon-base>
           </a>
         </li>
         <li class="project-link-icon">
           <a href="#">
-            <icon-base
-              :width="24"
-              :height="24"
-            >
+            <icon-base width="24" height="24">
               <icon-face-book />
             </icon-base>
           </a>
@@ -67,7 +62,20 @@ export default {
     IconBase,
     IconGithub,
     IconCodeChef,
-    IconFaceBook
+    IconFaceBook,
+  },
+  data() {
+    return {
+      hoverColor: "",
+    };
+  },
+  methods: {
+    hoveredIn() {
+      this.hoverColor = "hover-color";
+    },
+    hoveredOut() {
+      this.hoverColor = "";
+    },
   },
 };
 </script>
@@ -77,7 +85,9 @@ export default {
   margin: 0;
   padding: 0;
 }
+
 .individual-project {
+  height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -85,12 +95,18 @@ export default {
   border-radius: 5px;
   margin: 5px;
   padding: 20px;
+  color: #becaeb;
 }
+
 .project-name {
   width: 100%;
   font-size: 20px;
   font-weight: 1000;
   font-family: "Open Sans", sans-serif;
+}
+
+.hover-color {
+  color: #64ffda;
 }
 
 .project-description {
@@ -102,6 +118,7 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   font-family: monospace;
+  align-items: center;
 }
 
 .project-tech-stack {
@@ -110,7 +127,7 @@ export default {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .project_link {

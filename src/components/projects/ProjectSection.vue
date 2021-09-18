@@ -1,9 +1,11 @@
 <template>
   <div id="project">
-    <p class="project-header">Projects</p>
-    <router-link class="see-all-project" to="/all-projects"
-      >see all projects</router-link
-    >
+    <div class="header">
+      <p class="project-header">Projects</p>
+      <router-link class="see-all-project" to="/all-projects">
+        see all projects
+      </router-link>
+    </div>
     <div class="famous-project">
       <project-individual />
       <project-individual />
@@ -40,14 +42,22 @@ export default {
   align-items: center;
 }
 
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+
 .project-header {
-  font-size: 2vw;
+  font-size: 3vw;
   font-weight: 600;
   font-family: sans-serif;
   color: #becaeb;
 }
 
 .see-all-project {
+  margin-top: 5px;
   font-size: 15px;
   color: #64ffda;
   text-decoration: none;

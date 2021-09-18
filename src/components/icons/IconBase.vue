@@ -1,13 +1,15 @@
 <template>
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    :width="width"
-    :height="height"
+    role="img"
+    :width="width" :height="height"
     @mouseenter="iconColor = hoverColor"
     @mouseleave="iconColor = color"
     class="svg-icon"
   >
-    <g :fill="iconColor">
+  <!-- need to keep in mind -->
+      <!-- :viewBox="getViewBox" -->
+    <g :fill="iconColor" :width="width" :height="height">
       <slot />
     </g>
   </svg>
@@ -37,6 +39,11 @@ export default {
     hoverColor: {
       type: String,
       default: "#64ffda",
+    },
+  },
+  computed: {
+    getViewBox() {
+      return "0 0 " + (this.width / 2) + " " + (this.height / 2);
     },
   },
 };
