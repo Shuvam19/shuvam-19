@@ -10,6 +10,9 @@ const routes = [{
   path: '/all-project',
   name: 'Project',
   component: AllProject
+}, {
+  path : '/add-projects',
+  name: 'Add-Project'
 }
 ]
 
