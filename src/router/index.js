@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import store from '../store'
 import Home from '../views/Home.vue'
 import AllProject from '../views/AllProject.vue'
 import Login from '../views/Login.vue'
@@ -13,7 +14,12 @@ const routes = [{
   component: AllProject
 }, {
   path: '/add-projects',
-  name: 'Add-Project'
+  name: 'Add-Project',
+  component: AllProject,
+  beforeEnter(to, from, next) {
+    console.log(store.getters.isAuthenticated);
+    if (store.getters.isAuthenticated) next(); else next({ name: 'Login' });
+  }
 }, {
   path: '/login',
   name: 'Login',

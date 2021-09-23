@@ -1,14 +1,38 @@
 <template>
   <div class="login">
-    <input type="email" class="input-field login-email-id" />
-    <input type="password" class="input-field login-password" />
-    <button class="login-button">Login</button>
+    <input type="email" class="input-field login-email-id" v-model="email" />
+    <input
+      type="password"
+      class="input-field login-password"
+      v-model="password"
+    />
+    <button class="login-button" @click="loginDetails">Login</button>
   </div>
 </template>
 
 <script>
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 export default {
   name: "Login",
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+  methods: {
+    loginDetails() {
+      const auth = getAuth();
+      signInWithEmailAndPassword(auth, this.email, this.password)
+        .then(() => {
+          this.$store.commit("setAuthentication", true);
+          this.$router.push({ name: "Add-Project" });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
 };
 </script>
 
