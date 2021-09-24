@@ -3,6 +3,7 @@ import store from '../store'
 import Home from '../views/Home.vue'
 import AllProject from '../views/AllProject.vue'
 import Login from '../views/Login.vue'
+import AddProject from '../views/AddProject.vue'
 
 const routes = [{
   path: '/',
@@ -15,9 +16,8 @@ const routes = [{
 }, {
   path: '/add-projects',
   name: 'Add-Project',
-  component: AllProject,
+  component: AddProject,
   beforeEnter(to, from, next) {
-    console.log(store.getters.isAuthenticated);
     if (store.getters.isAuthenticated) next(); else next({ name: 'Login' });
   }
 }, {
