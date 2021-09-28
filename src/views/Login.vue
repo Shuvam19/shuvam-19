@@ -29,7 +29,7 @@ export default {
           this.$router.push({ name: "Add-Project" });
         })
         .catch((error) => {
-          console.log(error);
+          alert(error);
         });
     },
   },

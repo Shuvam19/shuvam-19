@@ -37,8 +37,39 @@
         v-model="projectInfo.desc"
       />
     </div>
-    <div class="tools"></div>
-    <div class="links"></div>
+    <div class="tools">
+      <textarea class="project-tools" placeholder="Tools" />
+      <div class="common-tools">
+        <p class="individual-tool">Vue</p>
+        <p class="individual-tool">React</p>
+        <p class="individual-tool">Java</p>
+        <p class="individual-tool">Android</p>
+        <p class="individual-tool">Html</p>
+        <p class="individual-tool">Gatsby</p>
+      </div>
+    </div>
+    <div class="links">
+      <input
+        class="project-links"
+        placeholder="Github Link"
+        v-model="projectInfo.links.github"
+      />
+      <input
+        class="project-links"
+        placeholder="Share Link"
+        v-model="projectInfo.links.share"
+      />
+      <input
+        class="project-links"
+        placeholder="Play Store Link"
+        v-model="projectInfo.links.playStore"
+      />
+      <input
+        class="project-links"
+        placeholder="App Store Link"
+        v-model="projectInfo.links.appStore"
+      />
+    </div>
   </div>
 </template>
 
@@ -122,5 +153,42 @@ export default {
 .project-description {
   height: 100%;
   width: 100%;
+}
+
+.tools {
+  display: flex;
+  flex-direction: column;
+}
+
+.common-tools {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.individual-tool {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #b0bbda;
+  color: #b0bbda;
+  font-size: 20px;
+  font-family: monospace;
+}
+
+.individual-tool:hover {
+  cursor: pointer;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.project-links {
+  width: 60%;
+  margin: 5px;
 }
 </style>
