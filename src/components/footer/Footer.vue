@@ -47,14 +47,10 @@ export default {
       listOfLinks: [
         {
           name: "CodeChef",
-          to: "https://github.com/Shuvam19",
+          to: "https://www.codechef.com/users/shuvam19",
         },
         {
           name: "Github",
-          to: "https://github.com/Shuvam19",
-        },
-        {
-          name: "FaceBook",
           to: "https://github.com/Shuvam19",
         },
         {
@@ -63,15 +59,15 @@ export default {
         },
         {
           name: "Instagram",
-          to: "https://github.com/Shuvam19",
+          to: "https://www.instagram.com/shuvam198/",
         },
         {
           name: "Linkedin",
-          to: "https://github.com/Shuvam19",
+          to: "https://www.linkedin.com/in/shuvam19/",
         },
         {
           name: "Twitter",
-          to: "https://github.com/Shuvam19",
+          to: "https://twitter.com/shuvam_19",
         },
       ],
     };

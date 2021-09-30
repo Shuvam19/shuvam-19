@@ -1,83 +1,105 @@
 <template>
+  <pre style="background-color: white">
+      {{ JSON.stringify(projectInfo, null, 3) }}
+  </pre>
+  <div class="title">
+    <default-input
+      class="project-title"
+      type="text"
+      name="Title"
+      placeholder="Title"
+      v-model="projectInfo.title"
+    />
+  </div>
   <div class="add-project">
-    <div class="title">
-      <input
-        class="project-title"
-        type="text"
-        name="Title"
-        placeholder="Title"
-        v-model="projectInfo.title"
-      />
-    </div>
-    <div class="quick-information">
-      <div class="year-and-made">
-        <input
-          class="project-year"
-          type="number"
-          placeholder="year"
-          v-model="projectInfo.year"
-        />
-        <input
-          class="project-made-at"
-          type="text"
-          placeholder="Made At"
-          v-model="projectInfo.madeAt"
+    <div class="left">
+      <div class="quick-information">
+        <div class="year-and-made">
+          <default-input
+            class="project-made-at"
+            type="text"
+            placeholder="Made At"
+            v-model="projectInfo.madeAt"
+          />
+          <year-drop-dowm
+            class="project-year"
+            v-model="projectInfo.year"
+            from="2018"
+          />
+        </div>
+        <default-text-area
+          class="project-small-desc"
+          v-model="projectInfo.smallDesc"
         />
       </div>
-      <textarea
-        class="project-small-desc"
-        placeholder="Small Description"
-        v-model="projectInfo.smallDesc"
-      />
-    </div>
-    <div class="description">
-      <textarea
-        class="project-description"
-        placeholder="Description"
-        v-model="projectInfo.desc"
-      />
-    </div>
-    <div class="tools">
-      <textarea class="project-tools" placeholder="Tools" />
-      <div class="common-tools">
-        <p class="individual-tool">Vue</p>
-        <p class="individual-tool">React</p>
-        <p class="individual-tool">Java</p>
-        <p class="individual-tool">Android</p>
-        <p class="individual-tool">Html</p>
-        <p class="individual-tool">Gatsby</p>
+      <div class="description">
+        <default-text-area
+          class="project-description"
+          v-model="projectInfo.desc"
+        />
       </div>
     </div>
-    <div class="links">
-      <input
-        class="project-links"
-        placeholder="Github Link"
-        v-model="projectInfo.links.github"
-      />
-      <input
-        class="project-links"
-        placeholder="Share Link"
-        v-model="projectInfo.links.share"
-      />
-      <input
-        class="project-links"
-        placeholder="Play Store Link"
-        v-model="projectInfo.links.playStore"
-      />
-      <input
-        class="project-links"
-        placeholder="App Store Link"
-        v-model="projectInfo.links.appStore"
-      />
+    <div class="right">
+      <add-project-tools @add="addToTools" @remove="removeFromTools" />
+      <div class="links">
+        <default-input
+          class="project-links"
+          placeholder="Github Link"
+          v-model="projectInfo.links.github"
+        />
+        <default-input
+          class="project-links"
+          placeholder="Share Link"
+          v-model="projectInfo.links.share"
+        />
+        <default-input
+          class="project-links"
+          placeholder="Play Store Link"
+          v-model="projectInfo.links.playStore"
+        />
+        <default-input
+          class="project-links"
+          placeholder="App Store Link"
+          v-model="projectInfo.links.appStore"
+        />
+      </div>
     </div>
   </div>
+  <button class="add-project-button" @click="addToFirestore">Add Project</button>
 </template>
 
 <script>
+import { addDoc, getFirestore, collection } from "firebase/firestore";
+import AddProjectTools from "../components/utils/AddProjectTools.vue";
+import DefaultInput from "../components/utils/DefaultInput.vue";
+import DefaultTextArea from "../components/utils/DefaultTextArea.vue";
+import YearDropDowm from "../components/utils/YearDropDowm.vue";
 export default {
+  components: { YearDropDowm, DefaultInput, DefaultTextArea, AddProjectTools },
   name: "",
+  methods: {
+    addToTools(tool) {
+      this.projectInfo.tools.push(tool);
+    },
+    removeFromTools(tool) {
+      this.projectInfo.tools.splice(this.projectInfo.tools.indexOf(tool), 1);
+    },
+    async addToFirestore() {
+      console.log("Writing is in progress");
+      try {
+        const docRef = await addDoc(
+          collection(this.db, "all-projects"),
+          this.projectInfo
+        );
+        console.log("Document written with ID: ", docRef.id);
+      } catch (err) {
+        console.error("Error adding document: ", err);
+      }
+    },
+  },
   data() {
     return {
+      db: getFirestore(),
       projectInfo: {
         title: "",
         smallDesc: "",
@@ -97,87 +119,77 @@ export default {
 };
 </script>
 
-<style>
-.add-project {
-  margin: 50px;
-  padding: 50px;
-  display: flex;
-  flex-direction: column;
-}
-
+<style scoped>
 .title {
-  width: 40%;
-  height: 30px;
-  margin: 0px 20px;
-  padding: 10px;
+  height: 40px;
+  margin: 0px 25px;
 }
 
 .project-title {
   width: 100%;
   height: 100%;
   font-family: monospace;
+  font-size: 20px;
 }
 
-.quick-information {
-  margin: 20px 0px;
-  padding: 10px;
+.add-project {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.year-and-made {
-  margin: 0px 0px 20px 0px;
-  display: flex;
+  padding: 0px 15px;
+  flex-direction: row;
   justify-content: space-between;
 }
 
-.project-year,
-.project-made-at {
+.left {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.right {
   width: 30%;
-  height: 25px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+}
+
+.quick-information {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.year-and-made {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.project-year {
+  width: 30%;
   margin: 0px 20px;
 }
 
+.project-made-at {
+  width: 30%;
+}
+
 .project-small-desc {
+  margin: 10px 0px 0px 0px;
   height: 100px;
-  width: 80%;
+  width: 100%;
+  font-family: monospace;
 }
 
 .description {
   display: flex;
-  padding: 10px;
   height: 200px;
 }
 
 .project-description {
   height: 100%;
   width: 100%;
-}
-
-.tools {
-  display: flex;
-  flex-direction: column;
-}
-
-.common-tools {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
-
-.individual-tool {
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid #b0bbda;
-  color: #b0bbda;
-  font-size: 20px;
   font-family: monospace;
-}
-
-.individual-tool:hover {
-  cursor: pointer;
 }
 
 .links {
@@ -188,7 +200,23 @@ export default {
 }
 
 .project-links {
-  width: 60%;
+  width: 100%;
   margin: 5px;
+}
+
+.add-project-button {
+  height: 100%;
+  background: none;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  padding: 10px;
+  border: 1px solid #b0bbda;
+  color: #b0bbda;
+}
+
+.add-project-button:hover {
+  background: #b0bbda;
+  color: black;
 }
 </style>
