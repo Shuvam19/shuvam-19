@@ -5,24 +5,21 @@
     @mouseleave="hoveredOut"
   >
     <div class="project-info">
-      <!-- In Testing -->
-      <!-- <div class="semi-image">
-        <icon-base width="50" height="50">
-          <icon-face-book />
-        </icon-base>
-      </div> -->
-      <p class="project-name" :class="hoverColor">Project Name is another</p>
+      <p class="project-name" :class="hoverColor">{{ project["title"] }}</p>
       <br />
       <p class="project-description">
-        This is a small description of the Project That shows about the project
-        what it's main purpose ans when it will be using in real life.
+        {{ project["smallDesc"] }}
       </p>
     </div>
     <div class="project-extras">
       <ul class="project-tech-stack">
-        <li class="project-tech-name">Vue</li>
-        <li class="project-tech-name">React</li>
-        <li class="project-tech-name">Firebase</li>
+        <li
+          class="project-tech-name"
+          v-for="tech in project['tools']"
+          :key="tech"
+        >
+          {{ tech }}
+        </li>
       </ul>
       <ul class="project_link">
         <li class="project-link-icon">
@@ -58,6 +55,9 @@ import IconCodeChef from "../icons/IconCodeChef.vue";
 import IconFaceBook from "../icons/IconFaceBook.vue";
 export default {
   name: "ProjectIndividual",
+  props: {
+    project: Object,
+  },
   components: {
     IconBase,
     IconGithub,
@@ -111,6 +111,7 @@ export default {
 
 .project-description {
   width: 100%;
+  font-family: monospace;
 }
 
 .project-extras {
@@ -127,7 +128,8 @@ export default {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+  gap: 10px;
 }
 
 .project_link {

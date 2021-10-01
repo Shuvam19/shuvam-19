@@ -2,30 +2,46 @@
   <div id="project">
     <div class="header">
       <p class="project-header">Projects</p>
-      <router-link class="see-all-project" to="/all-projects">
+      <router-link class="see-all-project" to="/all-project">
         see all projects
       </router-link>
     </div>
     <div class="famous-project">
-      <project-individual />
-      <project-individual />
-      <project-individual />
-      <project-individual />
-      <project-individual />
-      <project-individual />
-      <project-individual />
-      <project-individual />
-      <project-individual />
+      <template v-for="project in listOfProject" :key="project.id">
+        <project-individual :project="project.data" />
+      </template>
     </div>
   </div>
 </template>
 
 <script>
 import ProjectIndividual from "./ProjectIndividual.vue";
+import { collection, getDocs, getFirestore } from "firebase/firestore";
 export default {
   name: "ProjectSection",
   components: {
     ProjectIndividual,
+  },
+  data() {
+    return {
+      db: getFirestore(),
+      listOfProject: [],
+    };
+  },
+  methods: {
+    async getProjects() {
+      this.listOfProject = [];
+      const querySnapShots = await getDocs(collection(this.db, "all-projects"));
+      querySnapShots.forEach((doc) => {
+        this.listOfProject.push({
+          id: doc.id,
+          data: doc.data(),
+        });
+      });
+    },
+  },
+  mounted() {
+    this.getProjects();
   },
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
-  <pre style="background-color: white">
+  <!-- <pre style="background-color: white">
       {{ JSON.stringify(projectInfo, null, 3) }}
-  </pre>
+  </pre> -->
   <div class="title">
     <default-input
       class="project-title"
@@ -40,6 +40,9 @@
       </div>
     </div>
     <div class="right">
+      <div class="upload-images">
+        
+      </div>
       <add-project-tools @add="addToTools" @remove="removeFromTools" />
       <div class="links">
         <default-input
@@ -85,7 +88,6 @@ export default {
       this.projectInfo.tools.splice(this.projectInfo.tools.indexOf(tool), 1);
     },
     async addToFirestore() {
-      console.log("Writing is in progress");
       try {
         const docRef = await addDoc(
           collection(this.db, "all-projects"),
@@ -176,20 +178,24 @@ export default {
 
 .project-small-desc {
   margin: 10px 0px 0px 0px;
-  height: 100px;
+  height: 200px;
   width: 100%;
   font-family: monospace;
 }
 
 .description {
   display: flex;
-  height: 200px;
+  height: 400px;
 }
 
 .project-description {
   height: 100%;
   width: 100%;
   font-family: monospace;
+}
+
+.upload-images {
+  height: 250px;
 }
 
 .links {
