@@ -1,7 +1,4 @@
 <template>
-  <!-- <pre style="background-color: white">
-      {{ JSON.stringify(projectInfo, null, 3) }}
-  </pre> -->
   <div class="title">
     <default-input
       class="project-title"
@@ -73,13 +70,12 @@
 
 <script>
 import { addDoc, getFirestore, collection } from "firebase/firestore";
-import AddProjectTools from "../components/utils/AddProjectTools.vue";
-import DefaultInput from "../components/utils/DefaultInput.vue";
-import DefaultTextArea from "../components/utils/DefaultTextArea.vue";
-import YearDropDowm from "../components/utils/YearDropDowm.vue";
+import AddProjectTools from "../utils/AddProjectTools.vue";
+import DefaultInput from "../utils/DefaultInput.vue";
+import DefaultTextArea from "../utils/DefaultTextArea.vue";
+import YearDropDowm from "../utils/YearDropDowm.vue";
 export default {
   components: { YearDropDowm, DefaultInput, DefaultTextArea, AddProjectTools },
-  name: "",
   methods: {
     addToTools(tool) {
       this.projectInfo.tools.push(tool);

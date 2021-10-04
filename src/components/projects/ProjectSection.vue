@@ -16,7 +16,7 @@
 
 <script>
 import ProjectIndividual from "./ProjectIndividual.vue";
-import { collection, getDocs, getFirestore } from "firebase/firestore";
+import allprojects from '../firebase/getAllProjects'
 export default {
   name: "ProjectSection",
   components: {
@@ -24,20 +24,12 @@ export default {
   },
   data() {
     return {
-      db: getFirestore(),
       listOfProject: [],
     };
   },
   methods: {
     async getProjects() {
-      this.listOfProject = [];
-      const querySnapShots = await getDocs(collection(this.db, "all-projects"));
-      querySnapShots.forEach((doc) => {
-        this.listOfProject.push({
-          id: doc.id,
-          data: doc.data(),
-        });
-      });
+      this.listOfProject = await allprojects();
     },
   },
   mounted() {
