@@ -4,8 +4,7 @@
     class="default-text-area"
     :placeholder="placeholder"
     @input="$emit('update:modelValue', $event.target.innerText)"
-    :v-text="text"
-  />
+  >{{modelValue}}</div>
 </template>
 
 <script>
@@ -14,7 +13,6 @@ export default {
   props: {
     modelValue: String,
     placeholder: String,
-    text: String,
   },
 };
 </script>

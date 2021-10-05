@@ -4,7 +4,8 @@ import Home from '../views/Home.vue'
 import AllProject from '../views/AllProject.vue'
 import Login from '../views/Login.vue'
 import AdminPanel from '../views/AdminPanel.vue'
-
+import AddIndividualProject from '../components/projects/AddIndividualProject.vue'
+import ModifyIndividualProject from '../components/projects/ModifyIndividualProject.vue'
 const routes = [{
   path: '/',
   name: 'Home',
@@ -24,6 +25,20 @@ const routes = [{
   path: '/login',
   name: 'Login',
   component: Login,
+}, {
+  path: '/add-project',
+  name: 'AddProject',
+  component: AddIndividualProject,
+  beforeEnter(to, from, next) {
+    if (store.getters.isAuthenticated) next(); else next({ name: 'Login' });
+  }
+}, {
+  path: '/modify-project/:id',
+  name: 'ModifyProject',
+  component : ModifyIndividualProject,
+  beforeEnter(to, from, next) {
+    if (store.getters.isAuthenticated) next(); else next({ name: 'Login' });
+  }
 }
 ]
 

@@ -5,6 +5,7 @@
     name="Title"
     placeholder="Title"
     @input="$emit('update:modelValue', $event.target.value)"
+    :value="modelValue"
   />
 </template>
 

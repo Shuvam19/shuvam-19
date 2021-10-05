@@ -39,7 +39,7 @@
       <div class="upload-images">
         
       </div>
-      <add-project-tools @add="addToTools" @remove="removeFromTools" />
+      <add-project-tools/>
       <div class="links">
         <default-input
           class="project-links"
@@ -64,39 +64,19 @@
       </div>
     </div>
   </div>
-  <button class="add-project-button" @click="addToFirestore">Add Project</button>
 </template>
 
 <script>
-import { addDoc, getFirestore, collection } from "firebase/firestore";
+import getProjectByID from "../firebase/getProjectByID";
 import AddProjectTools from "../utils/AddProjectTools.vue";
 import DefaultInput from "../utils/DefaultInput.vue";
 import DefaultTextArea from "../utils/DefaultTextArea.vue";
 import YearDropDowm from "../utils/YearDropDowm.vue";
 export default {
   components: { YearDropDowm, DefaultInput, DefaultTextArea, AddProjectTools },
-  methods: {
-    addToTools(tool) {
-      this.projectInfo.tools.push(tool);
-    },
-    removeFromTools(tool) {
-      this.projectInfo.tools.splice(this.projectInfo.tools.indexOf(tool), 1);
-    },
-    async addToFirestore() {
-      try {
-        const docRef = await addDoc(
-          collection(this.db, "all-projects"),
-          this.projectInfo
-        );
-        console.log("Document written with ID: ", docRef.id);
-      } catch (err) {
-        console.error("Error adding document: ", err);
-      }
-    },
-  },
   data() {
     return {
-      db: getFirestore(),
+        showError : false,
       projectInfo: {
         title: "",
         smallDesc: "",
@@ -112,6 +92,17 @@ export default {
         },
       },
     };
+  },
+  methods: {
+    async fetchProject() {
+      this.projectInfo = await getProjectByID(this.$route.params.id);
+      if(!this.projectInfo){
+          this.showError = true;
+      }
+    },
+  },
+  mounted() {
+    this.fetchProject();
   },
 };
 </script>

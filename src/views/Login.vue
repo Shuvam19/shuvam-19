@@ -26,7 +26,7 @@ export default {
       signInWithEmailAndPassword(auth, this.email, this.password)
         .then(() => {
           this.$store.commit("setAuthentication", true);
-          this.$router.push({ name: "Add-Project" });
+          this.$router.push({ name: "AdminPanel" });
         })
         .catch((error) => {
           alert(error);

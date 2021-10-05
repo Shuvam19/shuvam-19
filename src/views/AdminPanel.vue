@@ -12,9 +12,11 @@
       >
         <p>{{ project.data["title"] }}</p>
         <p>{{ project.data["year"] }}</p>
-        <router-link :to="'/modify-project?id=' + project.id"
-          >Modify</router-link
+        <router-link
+          :to="'/modify-project/' + project.id"
         >
+          Modify
+        </router-link>
       </div>
     </div>
   </div>

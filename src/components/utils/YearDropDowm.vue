@@ -3,6 +3,7 @@
     class="project-year"
     placeholder="year"
     @input="$emit('update:modelValue', $event.target.value)"
+    :value="modelValue"
   />
 </template>
 
@@ -10,7 +11,6 @@
 export default {
   name: "YearDropDown",
   props: {
-    from: Number,
     modelValue: String,
   },
 };
