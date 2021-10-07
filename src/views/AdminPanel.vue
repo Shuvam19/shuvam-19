@@ -7,7 +7,7 @@
     <div class="project-list">
       <div
         class="project-individual"
-        v-for="project in listOfProjects"
+        v-for="project in listOfAllProjects"
         :key="project.id"
       >
         <p>{{ project.data["title"] }}</p>
@@ -19,25 +19,21 @@
         </router-link>
       </div>
     </div>
+    <div class="add-favourite">
+      <h1 class="favourite-project">Favourite Project</h1>
+      <select-favourite-project />
+    </div>
   </div>
 </template>
 
 <script>
-import allprojects from "../components/firebase/getAllProjects";
+import { mapState } from "vuex";
+import SelectFavouriteProject from '../components/projects/SelectFavouriteProject.vue';
 export default {
-  data() {
-    return {
-      listOfProjects: [],
-    };
-  },
-  methods: {
-    async getProjects() {
-      this.listOfProjects = await allprojects();
-    },
-  },
-  mounted() {
-    this.getProjects();
-  },
+  components: { SelectFavouriteProject },
+  computed:{
+    ...mapState(['listOfAllProjects']),
+  }
 };
 </script>
 

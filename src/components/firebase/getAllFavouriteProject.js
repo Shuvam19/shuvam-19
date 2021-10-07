@@ -3,14 +3,14 @@ import store from "../../store";
 const getProjects = async () => {
     const db = getFirestore();
     const listOfProject = [];
-    const querySnapShots = await getDocs(collection(db, "all-projects"));
+    const querySnapShots = await getDocs(collection(db, "favourite-projects"));
     querySnapShots.forEach((doc) => {
       listOfProject.push({
         id: doc.id,
         data: doc.data(),
       });
     });
-    store.commit('setAllProjects',listOfProject);
+    store.commit('setFavouriteProjects',listOfProject);
 }
 
 export default getProjects;

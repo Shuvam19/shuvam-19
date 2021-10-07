@@ -7,7 +7,7 @@
       </router-link>
     </div>
     <div class="famous-project">
-      <template v-for="project in listOfProject" :key="project.id">
+      <template v-for="project in favouraiteProjects" :key="project.id">
         <project-individual :project="project.data" />
       </template>
     </div>
@@ -16,24 +16,14 @@
 
 <script>
 import ProjectIndividual from "./ProjectIndividual.vue";
-import allprojects from '../firebase/getAllProjects'
+import { mapState } from "vuex";
 export default {
   name: "ProjectSection",
   components: {
     ProjectIndividual,
   },
-  data() {
-    return {
-      listOfProject: [],
-    };
-  },
-  methods: {
-    async getProjects() {
-      this.listOfProject = await allprojects();
-    },
-  },
-  mounted() {
-    this.getProjects();
+  computed: {
+    ...mapState(["favouraiteProjects"]),
   },
 };
 </script>

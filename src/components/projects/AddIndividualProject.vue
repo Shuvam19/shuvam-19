@@ -68,11 +68,11 @@
 </template>
 
 <script>
-import { addDoc, getFirestore, collection } from "firebase/firestore";
 import AddProjectTools from "../utils/AddProjectTools.vue";
 import DefaultInput from "../utils/DefaultInput.vue";
 import DefaultTextArea from "../utils/DefaultTextArea.vue";
 import YearDropDowm from "../utils/YearDropDowm.vue";
+import AddProjectToFirestore from "../firebase/AddProjectToFirestore";
 export default {
   components: { YearDropDowm, DefaultInput, DefaultTextArea, AddProjectTools },
   methods: {
@@ -83,20 +83,11 @@ export default {
       this.projectInfo.tools.splice(this.projectInfo.tools.indexOf(tool), 1);
     },
     async addToFirestore() {
-      try {
-        const docRef = await addDoc(
-          collection(this.db, "all-projects"),
-          this.projectInfo
-        );
-        console.log("Document written with ID: ", docRef.id);
-      } catch (err) {
-        console.error("Error adding document: ", err);
-      }
-    },
+      AddProjectToFirestore("all-projects",this.projectInfo);
+    }
   },
   data() {
     return {
-      db: getFirestore(),
       projectInfo: {
         title: "",
         smallDesc: "",
