@@ -21,48 +21,22 @@
           {{ tech }}
         </li>
       </ul>
-      <ul class="project_link">
-        <li class="project-link-icon">
-          <a href="#">
-            <icon-base :width="24" :height="24">
-              <icon-github />
-            </icon-base>
-          </a>
-        </li>
-        <li class="project-link-icon">
-          <a href="#">
-            <icon-base width="24" height="24">
-              <icon-code-chef />
-            </icon-base>
-          </a>
-        </li>
-        <li class="project-link-icon">
-          <a href="#">
-            <icon-base width="24" height="24">
-              <icon-face-book />
-            </icon-base>
-          </a>
-        </li>
-      </ul>
+      <div class="project_link">
+        <project-link-icon :link="project['links']" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import IconBase from "../icons/IconBase.vue";
-import IconGithub from "../icons/IconGithub.vue";
-import IconCodeChef from "../icons/IconCodeChef.vue";
-import IconFaceBook from "../icons/IconFaceBook.vue";
+import ProjectLinkIcon from "./ProjectLinkIcon.vue";
 export default {
   name: "ProjectIndividual",
   props: {
     project: Object,
   },
   components: {
-    IconBase,
-    IconGithub,
-    IconCodeChef,
-    IconFaceBook,
+    ProjectLinkIcon,
   },
   data() {
     return {
@@ -135,11 +109,10 @@ export default {
 .project_link {
   width: 30%;
   padding: 5px;
-  list-style: none;
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   flex-wrap: wrap;
-  justify-content: space-between;
+  gap: 8px;
 }
 
 .project-tech-name {
