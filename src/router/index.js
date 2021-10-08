@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import store from '../store'
 import Home from '../views/Home.vue'
 import AllProject from '../views/AllProject.vue'
-import Login from '../views/Login.vue'
-import AdminPanel from '../views/AdminPanel.vue'
-import AddIndividualProject from '../components/projects/AddIndividualProject.vue'
-import ModifyIndividualProject from '../components/projects/ModifyIndividualProject.vue'
+// import store from '../store'
+// import Login from '../views/Login.vue'
+// import AdminPanel from '../views/AdminPanel.vue'
+// import AddIndividualProject from '../components/projects/AddIndividualProject.vue'
+// import ModifyIndividualProject from '../components/projects/ModifyIndividualProject.vue'
 const routes = [{
   path: '/',
   name: 'Home',
@@ -14,7 +14,7 @@ const routes = [{
   path: '/all-project',
   name: 'Project',
   component: AllProject
-}, {
+ },/* {
   path: '/admin-panel',
   name: 'AdminPanel',
   component: AdminPanel,
@@ -39,7 +39,7 @@ const routes = [{
   beforeEnter(to, from, next) {
     if (store.getters.isAuthenticated) next(); else next({ name: 'Login' });
   }
-}
+ } */
 ]
 
 const router = createRouter({
