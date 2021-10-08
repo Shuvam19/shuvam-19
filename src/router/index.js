@@ -1,20 +1,45 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+import AllProject from '../views/AllProject.vue'
+// import store from '../store'
+// import Login from '../views/Login.vue'
+// import AdminPanel from '../views/AdminPanel.vue'
+// import AddIndividualProject from '../components/projects/AddIndividualProject.vue'
+// import ModifyIndividualProject from '../components/projects/ModifyIndividualProject.vue'
+const routes = [{
+  path: '/',
+  name: 'Home',
+  component: Home
+}, {
+  path: '/all-project',
+  name: 'Project',
+  component: AllProject
+ },/* {
+  path: '/admin-panel',
+  name: 'AdminPanel',
+  component: AdminPanel,
+  beforeEnter(to, from, next) {
+    if (store.getters.isAuthenticated) next(); else next({ name: 'Login' });
   }
+}, {
+  path: '/login',
+  name: 'Login',
+  component: Login,
+}, {
+  path: '/add-project',
+  name: 'AddProject',
+  component: AddIndividualProject,
+  beforeEnter(to, from, next) {
+    if (store.getters.isAuthenticated) next(); else next({ name: 'Login' });
+  }
+}, {
+  path: '/modify-project/:id',
+  name: 'ModifyProject',
+  component : ModifyIndividualProject,
+  beforeEnter(to, from, next) {
+    if (store.getters.isAuthenticated) next(); else next({ name: 'Login' });
+  }
+ } */
 ]
 
 const router = createRouter({
