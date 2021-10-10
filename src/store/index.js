@@ -6,7 +6,6 @@ const store = createStore({
     state: {
         authenticated: false,
         listOfAllProjects: [],
-        favouraiteProjects: [],
     },
     mutations: {
         setAuthentication(state, status) {
@@ -14,9 +13,6 @@ const store = createStore({
         },
         setAllProjects(state, allprojects) {
             state.listOfAllProjects = allprojects
-        },
-        setFavouriteProjects(state, allprojects) {
-            state.favouraiteProjects = allprojects
         }
     },
     getters: {

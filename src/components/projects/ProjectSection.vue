@@ -7,13 +7,16 @@
       </router-link>
     </div>
     <div class="famous-project">
-      <template v-for="project in favouraiteProjects" :key="project.id">
-        <project-individual :project="project.data" />
+      <template v-for="project in listOfAllProjects" :key="project.id">
+        <project-individual
+          :project="project.data"
+          v-if="project.data['isFavorite']"
+        />
       </template>
     </div>
   </div>
 </template>
-
+ 
 <script>
 import ProjectIndividual from "./ProjectIndividual.vue";
 import { mapState } from "vuex";
@@ -23,7 +26,7 @@ export default {
     ProjectIndividual,
   },
   computed: {
-    ...mapState(["favouraiteProjects"]),
+    ...mapState(["listOfAllProjects"]),
   },
 };
 </script>

@@ -70,12 +70,17 @@ export default {
   margin: 5px;
   padding: 20px;
   color: #becaeb;
+  transition: all 0.3s linear;
+}
+
+.individual-project:hover {
+  transform: scale(1.05);
 }
 
 .project-name {
   width: 100%;
   font-size: 20px;
-  font-weight: 1000;
+  font-weight: 800;
   font-family: "Open Sans", sans-serif;
 }
 

@@ -13,11 +13,13 @@
     <div class="selected-projects">
       <div
         class="individual-project"
-        v-for="project in favouraiteProjects"
+        v-for="project in listOfAllProjects"
         :key="project.id"
       >
-        <p>{{ project.data["title"] }}</p>
-        <p @click="removeProject(project.id)">Remove Project</p>
+        <template v-if="project.data['isFavorite']">
+          <p>{{ project.data["title"] }}</p>
+          <p @click="removeProject(project)">Remove Project</p>
+        </template>
       </div>
     </div>
   </div>
@@ -25,18 +27,19 @@
 
 <script>
 import { mapState } from "vuex";
-import AddProjectToFirestore from "../firebase/AddProjectToFirestore";
-import deleteDocument from "../firebase/DeleteDocument";
+import updateDocument from "../firebase/updateDocument";
 export default {
   computed: {
-    ...mapState(["listOfAllProjects", "favouraiteProjects"]),
+    ...mapState(["listOfAllProjects"]),
   },
   methods: {
     addToFavouraiteProject(project) {
-      AddProjectToFirestore("favourite-projects", project.data);
+      project.data["isFavorite"] = true;
+      updateDocument("all-projects", project.id, project.data);
     },
-    removeProject(id) {
-      deleteDocument("favourite-projects", id);
+    removeProject(project) {
+      project.data["isFavorite"] = false;
+      updateDocument("all-projects", project.id, project.data);
     },
   },
 };

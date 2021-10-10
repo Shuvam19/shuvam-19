@@ -8,7 +8,6 @@
 import Navigation from "./components/navigation/Navigation.vue";
 import Footer from "./components/footer/Footer.vue"
 import getProjects from './components/firebase/getAllProjects';
-import getFavouriteProjects from './components/firebase/getAllFavouriteProject';
 export default {
   name: "App",
   components: {
@@ -17,7 +16,6 @@ export default {
   },
   mounted() {
     getProjects();
-    getFavouriteProjects();
   }
 };
 </script>

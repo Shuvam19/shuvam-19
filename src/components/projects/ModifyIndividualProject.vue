@@ -64,9 +64,11 @@
       </div>
     </div>
   </div>
+  <button class="add-project-button" @click="updateToFireStore">Modify Project</button>
 </template>
 
 <script>
+import updateDocument from '../firebase/updateDocument'
 import getProjectByID from "../firebase/getProjectByID";
 import AddProjectTools from "../utils/AddProjectTools.vue";
 import DefaultInput from "../utils/DefaultInput.vue";
@@ -100,6 +102,9 @@ export default {
         this.showError = true;
       }
     },
+    async updateToFireStore() {
+      await updateDocument("all-projects",this.$route.params.id,this.projectInfo);
+    }
   },
   mounted() {
     this.fetchProject();

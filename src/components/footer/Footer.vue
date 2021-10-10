@@ -77,10 +77,12 @@ export default {
 
 <style scoped>
 #footer {
+  padding: 15px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .get-in-touch {
