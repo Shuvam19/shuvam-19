@@ -2,7 +2,7 @@
   <tr class="project-table-row">
     <td class="project-date">{{ project["year"] }}</td>
     <td class="project-title">{{ project["title"] }}</td>
-    <td class="project-madeAt hidden">{{ project["madeAt"] }}</td>
+    <td class="project-madeAt hidden">{{ project["madeAt"] ? project["madeAt"] : "——"}}</td>
     <td class="project-tech-stack hidden">{{ allTools }}</td>
     <td class="project-link">
       <div class="linkIcons">

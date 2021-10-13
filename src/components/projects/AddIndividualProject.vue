@@ -72,7 +72,7 @@ import AddProjectTools from "../utils/AddProjectTools.vue";
 import DefaultInput from "../utils/DefaultInput.vue";
 import DefaultTextArea from "../utils/DefaultTextArea.vue";
 import YearDropDowm from "../utils/YearDropDowm.vue";
-import AddProjectToFirestore from "../firebase/AddProjectToFirestore";
+import AddProjectToFirestore from "../utils/firebaseUtils/AddProjectToFirestore";
 export default {
   components: { YearDropDowm, DefaultInput, DefaultTextArea, AddProjectTools },
   methods: {

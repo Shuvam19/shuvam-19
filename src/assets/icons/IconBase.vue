@@ -2,13 +2,15 @@
   <svg
     xmlns="http://www.w3.org/2000/svg"
     role="img"
-    :width="width" :height="height"
+    :width="width"
+    :height="height"
     @mouseenter="iconColor = hoverColor"
     @mouseleave="iconColor = color"
+    viewBox="0 0 24 24"
     class="svg-icon"
   >
-  <!-- need to keep in mind -->
-      <!-- :viewBox="getViewBox" -->
+    <!-- need to keep in mind -->
+    <!-- :viewBox="getViewBox" -->
     <g :fill="iconColor" :width="width" :height="height">
       <slot />
     </g>
@@ -43,7 +45,7 @@ export default {
   },
   computed: {
     getViewBox() {
-      return "0 0 " + (this.width / 2) + " " + (this.height / 2);
+      return "0 0 " + this.width / 2 + " " + this.height / 2;
     },
   },
 };

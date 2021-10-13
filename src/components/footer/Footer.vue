@@ -19,14 +19,14 @@
 </template>
 
 <script>
-import IconBase from "../icons/IconBase.vue";
-import IconCodeChef from "../icons/IconCodeChef.vue";
-import IconFaceBook from "../icons/IconFaceBook.vue";
-import IconGithub from "../icons/IconGithub.vue";
-import IconGmail from "../icons/IconGmail.vue";
-import IconInstagram from "../icons/IconInstagram.vue";
-import IconLinkedin from "../icons/IconLinkedin.vue";
-import IconTwitter from "../icons/IconTwitter.vue";
+import IconBase from "../../assets/icons/IconBase.vue";
+import IconCodeChef from "../../assets/icons/IconCodeChef.vue";
+import IconFaceBook from "../../assets/icons/IconFaceBook.vue";
+import IconGithub from "../../assets/icons/IconGithub.vue";
+import IconGmail from "../../assets/icons/IconGmail.vue";
+import IconInstagram from "../../assets/icons/IconInstagram.vue";
+import IconLinkedin from "../../assets/icons/IconLinkedin.vue";
+import IconTwitter from "../../assets/icons/IconTwitter.vue";
 
 export default {
   name: "Footer",
@@ -77,10 +77,12 @@ export default {
 
 <style scoped>
 #footer {
+  padding: 15px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .get-in-touch {
