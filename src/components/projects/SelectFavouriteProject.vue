@@ -27,7 +27,7 @@
 
 <script>
 import { mapState } from "vuex";
-import updateDocument from "../firebase/updateDocument";
+import updateDocument from "../utils/firebaseUtils/updateDocument";
 export default {
   computed: {
     ...mapState(["listOfAllProjects"]),

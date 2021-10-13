@@ -6,6 +6,7 @@ import AllProject from '../views/AllProject.vue'
 // import AdminPanel from '../views/AdminPanel.vue'
 // import AddIndividualProject from '../components/projects/AddIndividualProject.vue'
 // import ModifyIndividualProject from '../components/projects/ModifyIndividualProject.vue'
+// import AddExperience from '../components/experience/AddExperience.vue'
 const routes = [{
   path: '/',
   name: 'Home',
@@ -14,7 +15,7 @@ const routes = [{
   path: '/all-project',
   name: 'Project',
   component: AllProject
- },/* {
+},/* {
   path: '/admin-panel',
   name: 'AdminPanel',
   component: AdminPanel,
@@ -35,11 +36,18 @@ const routes = [{
 }, {
   path: '/modify-project/:id',
   name: 'ModifyProject',
-  component : ModifyIndividualProject,
+  component: ModifyIndividualProject,
   beforeEnter(to, from, next) {
     if (store.getters.isAuthenticated) next(); else next({ name: 'Login' });
   }
- } */
+},{
+  path: '/add-experience',
+  name: 'AddExperience',
+  component: AddExperience,
+  beforeEnter(to, from, next) {
+    if (store.getters.isAuthenticated) next(); else next({ name: 'Login' });
+  }
+}*/
 ]
 
 const router = createRouter({

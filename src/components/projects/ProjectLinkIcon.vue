@@ -1,7 +1,7 @@
 <template>
   <a :href="link['share']" v-if="link['share']" target="__blank">
-    <icon-base :width="24" :height="24">
-      <!-- Need To Add Share Icon -->
+    <icon-base :width="28" :height="28">
+      <icon-share />
     </icon-base>
   </a>
   <a :href="link['github']" v-if="link['github']" target="__blank">
@@ -22,11 +22,12 @@
 </template>
 
 <script>
-import IconBase from "../icons/IconBase.vue";
-import IconGithub from "../icons/IconGithub.vue";
+import IconBase from "../../assets/icons/IconBase.vue";
+import IconGithub from "../../assets/icons/IconGithub.vue";
+import IconShare from "../../assets/icons/IconShare.vue";
 
 export default {
-  components: { IconBase, IconGithub },
+  components: { IconBase, IconGithub, IconShare },
   props: {
     link: Object,
   },

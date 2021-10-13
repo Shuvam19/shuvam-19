@@ -21,6 +21,7 @@ export default {
 <style scoped>
 .default-input {
   height: 100%;
+  width: 100%;
   box-sizing: border-box;
   background: none;
   border: 1px solid #b0bbda;

@@ -1,5 +1,5 @@
 import { collection, getDocs, getFirestore } from "firebase/firestore";
-import store from "../../store";
+import store from "../../../store";
 
 const getProjects = async () => {
   const db = getFirestore();

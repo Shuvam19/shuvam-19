@@ -6,8 +6,9 @@
 
 <script>
 import Navigation from "./components/navigation/Navigation.vue";
-import Footer from "./components/footer/Footer.vue"
-import getProjects from './components/firebase/getAllProjects';
+import Footer from "./components/footer/Footer.vue";
+import getProjects from "./components/utils/firebaseUtils/getAllProjects";
+import getExperience from "./components/utils/firebaseUtils/getAllExperience";
 export default {
   name: "App",
   components: {
@@ -16,7 +17,8 @@ export default {
   },
   mounted() {
     getProjects();
-  }
+    getExperience();
+  },
 };
 </script>
 

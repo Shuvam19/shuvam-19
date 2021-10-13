@@ -68,8 +68,8 @@
 </template>
 
 <script>
-import updateDocument from '../firebase/updateDocument'
-import getProjectByID from "../firebase/getProjectByID";
+import updateDocument from '../utils/firebaseUtils/updateDocument'
+import getProjectByID from "../utils/firebaseUtils/getProjectByID";
 import AddProjectTools from "../utils/AddProjectTools.vue";
 import DefaultInput from "../utils/DefaultInput.vue";
 import DefaultTextArea from "../utils/DefaultTextArea.vue";

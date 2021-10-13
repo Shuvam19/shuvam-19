@@ -6,6 +6,7 @@ const store = createStore({
     state: {
         authenticated: false,
         listOfAllProjects: [],
+        listOfExperience: [],
     },
     mutations: {
         setAuthentication(state, status) {
@@ -13,6 +14,9 @@ const store = createStore({
         },
         setAllProjects(state, allprojects) {
             state.listOfAllProjects = allprojects
+        },
+        setExperience(state, allExperience) {
+            state.listOfExperience = allExperience;
         }
     },
     getters: {
